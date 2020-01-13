@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
+
 @RestController
 @RequestMapping("kafka")
 public class EmployeeController {
@@ -20,7 +22,7 @@ public class EmployeeController {
     @GetMapping("/publish/{name}")
     public String post(@PathVariable("name") final String name) {
 
-        kafkaTemplate.send(TOPIC, new Employee(1, name));
+        kafkaTemplate.send(TOPIC, new Employee("fname", name, new Date(), 1));
 
         return "Published successfully";
     }
