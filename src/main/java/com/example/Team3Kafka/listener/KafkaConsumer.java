@@ -18,7 +18,7 @@ public class KafkaConsumer {
         // TODO Auto-generated constructor stub
     }
 
-    private static int count = 0;
+    private static int addedrecordCount = 0;
     @Autowired
     EmployeeRepository employeeRepository;
     @Autowired
@@ -29,21 +29,19 @@ public class KafkaConsumer {
         System.out.println("consume string msg : " + msg);
     }
 
-    @KafkaListener(topics = "Kafka_Example_json20", groupId = "group_id_json", containerFactory = "userkafkaListenerContainerFactory")
+    @KafkaListener(topics = "Employee_kafka_json", groupId = "group_id_json_1", containerFactory = "userkafkaListenerContainerFactory")
     public void consumeUserJSON(Employee employee) {
-        if (count < 150) {
-            employeeRepository.save(employee);
-            System.out.println("consume json msg for Postgres: " + employee);
+        employeeRepository.save(employee);
+        System.out.println("consume json msg for Postgres: " + employee);
+        System.out.println("count value :" + addedrecordCount++);
+    }
 
-        } else {
-
-            EmployeeDocument employeeDocument = new EmployeeDocument();
-            BeanUtils.copyProperties(employee, employeeDocument);
-            employeeDocumentRepository.insert(employeeDocument);
-            System.out.println("consume json msg for MongoDB: " + employee);
-        }
-        System.out.println("count value :" + count++);
-
-
+    @KafkaListener(topics = "Employee_kafka_json", groupId = "group_id_json_1", containerFactory = "userkafkaListenerContainerFactory")
+    public void consumeUserJSON2(Employee employee) {
+        EmployeeDocument employeeDocument = new EmployeeDocument();
+        BeanUtils.copyProperties(employee, employeeDocument);
+        employeeDocumentRepository.insert(employeeDocument);
+        System.out.println("consume json msg for MongoDB: " + employee);
+        System.out.println("count value :" + addedrecordCount++);
     }
 }

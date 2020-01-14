@@ -16,7 +16,7 @@ public class ReadToKafkaServiceImpl implements ReadToKafkaService {
     @Autowired
     private KafkaTemplate<String, Employee> kafkaTemplate;
 
-    private static final String TOPIC = "Kafka_Example_json20";
+    private static final String TOPIC = "Employee_kafka_json";
 
     public KafkaTemplate<String, Employee> getKafkaTemplate() {
         return kafkaTemplate;

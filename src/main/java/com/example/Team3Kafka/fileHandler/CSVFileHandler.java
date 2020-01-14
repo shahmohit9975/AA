@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 public class CSVFileHandler extends Thread {
     @Autowired
     private KafkaTemplate<String, Employee> kafkaTemplate;
-    private static final String TOPIC = "Kafka_Example_json20";
+    private static final String TOPIC = "Employee_kafka_json";
 
     @Override
     public void run() {
@@ -30,7 +30,6 @@ public class CSVFileHandler extends Thread {
             {
                 Employee emp = new Employee();
                 String[] employee = line.split(splitBy);    // use comma as separator
-
                 emp.setFirstName(employee[0]);
                 emp.setLastName(employee[1]);
                 emp.setDateOfBirth(format.parse(employee[2]));

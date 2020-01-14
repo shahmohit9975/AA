@@ -20,7 +20,7 @@ public class JsonFileHandler extends Thread {
 
     @Autowired
     private KafkaTemplate<String, Employee> kafkaTemplate;
-    private static final String TOPIC = "Kafka_Example_json20";
+    private static final String TOPIC = "Employee_kafka_json";
     public static final String DATE_OF_BIRTH_FORMAT = "MM/dd/yy";
 
     @Override

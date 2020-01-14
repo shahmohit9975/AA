@@ -1,5 +1,7 @@
 package com.example.Team3Kafka.entity;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.bson.types.ObjectId;
 
 import javax.persistence.*;
