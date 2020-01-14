@@ -1,13 +1,16 @@
 package com.example.Team3Kafka.entity;
 
-import org.bson.types.ObjectId;
-
 import javax.persistence.*;
+import java.lang.annotation.Documented;
 import java.util.Date;
 
-@Entity
-@Table(name = "employee")
-public class Employee {
+import org.bson.types.ObjectId;
+import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
+public class EmployeeDocument {
 
     @Id
     private String firstName;
@@ -15,18 +18,24 @@ public class Employee {
     private Date dateOfBirth;
     private int experience;
 
-    public Employee(String firstName, String lastName, Date dateOfBirth, int experience) {
+    public EmployeeDocument(String firstName, String lastName, Date dateOfBirth, int experience) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.experience = experience;
     }
 
-
-
-    public Employee() {
+    public EmployeeDocument() {
 
     }
+
+//    public ObjectId get_id() {
+//        return _id;
+//    }
+//
+//    public void set_id(ObjectId _id) {
+//        this._id = _id;
+//    }
 
     public String getFirstName() {
         return firstName;
